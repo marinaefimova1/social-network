@@ -1,0 +1,17 @@
+.wrapper img {
+    width: fit-content;
+    height: 300px;
+}
+
+.posts {
+    background-color: cadetblue;
+}
+
+.item {
+    background-color: bisque;
+    color:blue;
+}
+
+.active {
+    color:brown;
+}
