@@ -1,0 +1,12 @@
+.profileInfo {
+    background-color: cadetblue;
+}
+
+.wrapper img {
+    width: fit-content;
+    height: 300px;
+}
+
+.descriptionBlock {
+    padding: 10px;
+}

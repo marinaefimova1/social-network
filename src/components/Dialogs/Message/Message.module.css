@@ -1,0 +1,19 @@
+.messages {
+    padding: 10px;
+}
+.message {
+    text-align: left;
+}
+.message.owner {
+    text-align: right;
+    /* color:brown; */
+}
+.message img {
+    width: 20px;
+    height: 20px;
+    border-radius: 30px;
+}
+.message.owner img{
+    text-align: right;
+    /* color:brown; */
+}
