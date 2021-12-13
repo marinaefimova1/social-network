@@ -15,24 +15,30 @@ import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
 
 const App = (props) => {
-  const { state, addPost, updateNewPostText } = props;
+  const { state, addPost, updateNewPostText, addMessage, updateMessage } = props;
 
   return (
     <BrowserRouter>
       <div className="app-wrapper">
         <Header />
-        <Navbar friends={state.sideBar.friends}/>
+        <Navbar friends={state.sideBar.friends} />
         <div className="app-wrapper-content">
           <Routes>
-            <Route path="/dialogs/*" element={<Dialogs state={state.dialogsPage}/>} />
-            <Route path="/profile" element={<Profile state={state.profilePage}
-                                                    addPost={addPost} 
-                                                    newPostText={state.profilePage.newPostText}
-                                                    updateNewPostText={updateNewPostText}/>} />
+            <Route path="/dialogs/*" element={
+              <Dialogs messages={state.dialogsPage.messages}
+                dialogs={state.dialogsPage.dialogs}
+                newMessage={state.dialogsPage.newMessage}
+                addMessage={addMessage}
+                updateMessage={updateMessage} />} />
+            <Route path="/profile" element={
+              <Profile state={state.profilePage}
+                addPost={addPost}
+                newPostText={state.profilePage.newPostText}
+                updateNewPostText={updateNewPostText} />} />
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
             <Route path="/settings" element={<Settings />} />
-            <Route path="/friends" element={<Friends friends={state.sideBar.friends}/>} />
+            <Route path="/friends" element={<Friends friends={state.sideBar.friends} />} />
           </Routes>
         </div>
       </div>
