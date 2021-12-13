@@ -15,7 +15,7 @@ import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
 
 const App = (props) => {
-  const { state } = props;
+  const { state, addPost, updateNewPostText } = props;
 
   return (
     <BrowserRouter>
@@ -25,7 +25,10 @@ const App = (props) => {
         <div className="app-wrapper-content">
           <Routes>
             <Route path="/dialogs/*" element={<Dialogs state={state.dialogsPage}/>} />
-            <Route path="/profile" element={<Profile state={state.profilePage}/>} />
+            <Route path="/profile" element={<Profile state={state.profilePage}
+                                                    addPost={addPost} 
+                                                    newPostText={state.profilePage.newPostText}
+                                                    updateNewPostText={updateNewPostText}/>} />
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
             <Route path="/settings" element={<Settings />} />

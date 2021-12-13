@@ -1,10 +1,13 @@
+import { rerenderEntrieTree } from "../render";
+
 const state = {
     profilePage: {
         postData: [
             { id: "1", message: "HI!", likeCount: 19 },
             { id: "2", message: "YO", likeCount: 2 },
             { id: "3", message: "It's my first post!", likeCount: 10 },
-        ]
+        ],
+        "newPostText": "test marina"
     },
     dialogsPage: {
         dialogs: [
@@ -26,6 +29,25 @@ const state = {
             { id: "3", name: "Syapick", ava: "ava.jpeg" } 
         ]
     }
+};
+window.state = state;
+
+export const addPost = () => {
+    const newPost = {
+        id: "4", 
+        message: state.profilePage.newPostText, 
+        likeCount: 0
+    };
+
+    state.profilePage.postData.push(newPost);
+    state.profilePage.newPostText = "";
+    rerenderEntrieTree(state);
+};
+
+export const updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText;
+
+    rerenderEntrieTree(state);
 };
 
 export default state;
