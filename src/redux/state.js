@@ -1,5 +1,8 @@
-import { rerenderEntrieTree } from "../render";
+let rerenderEntrieTree = () => {};
 
+export const subscribe = (observer) => {
+    rerenderEntrieTree = observer;
+};
 const state = {
     profilePage: {
         postData: [
