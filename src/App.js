@@ -15,7 +15,7 @@ import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
 
 const App = (props) => {
-  const { state, addPost, updateNewPostText, addMessage, updateMessage } = props;
+  const { state, dispatch } = props;
 
   return (
     <BrowserRouter>
@@ -28,13 +28,12 @@ const App = (props) => {
               <Dialogs messages={state.dialogsPage.messages}
                 dialogs={state.dialogsPage.dialogs}
                 newMessage={state.dialogsPage.newMessage}
-                addMessage={addMessage}
-                updateMessage={updateMessage} />} />
+                dispatch={dispatch}/>} />
             <Route path="/profile" element={
               <Profile state={state.profilePage}
-                addPost={addPost}
+                dispatch={dispatch}
                 newPostText={state.profilePage.newPostText}
-                updateNewPostText={updateNewPostText} />} />
+                />} />
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
             <Route path="/settings" element={<Settings />} />

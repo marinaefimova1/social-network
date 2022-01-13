@@ -7,7 +7,7 @@ import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 
 const Dialogs = (props) => {
-    const { dialogs, messages, addMessage, updateMessage, newMessage } = props;
+    const { dialogs, messages, newMessage, dispatch } = props;
 
     const dialogElements = dialogs.map((d) => <DialogItem name={d.name} id={d.id} />);
 
@@ -17,7 +17,11 @@ const Dialogs = (props) => {
 
     const onMessageChange = () => {
         const text = newMessageElement.current.value;
-        updateMessage(text);
+        dispatch({type:"CHANGE-MESSAGE", newMessage: text});
+    };
+
+    const onMessageAdd = () => {
+        dispatch({type: "ADD-MESSAGE"});
     };
 
     return (
@@ -30,7 +34,7 @@ const Dialogs = (props) => {
                 <textarea onChange={onMessageChange}
                     ref={newMessageElement}
                     value={newMessage}></textarea>
-                <button onClick={()=> addMessage()}>Add Message</button>
+                <button onClick={onMessageAdd}>Add Message</button>
             </div>
         </div>
     )

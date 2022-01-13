@@ -3,13 +3,17 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = (props) => {
-  const { postData, addPost, newPostText, updateNewPostText } = props;
+  const { postData, newPostText, dispatch } = props;
 
   const newPostElement = React.createRef();
 
   const onPostChange = () => {
     let text = newPostElement.current.value;
-    updateNewPostText(text);
+    dispatch({type: "UPDATE-NEW-POST-TEXT", newPostText: text });
+  };
+
+  const onAddPost = () => {
+    dispatch({type: "ADD-POST"});
   };
 
   const postElements = postData.map((p) => <Post message={p.message} likeCount={p.likeCount} />);
@@ -22,7 +26,7 @@ const MyPosts = (props) => {
           <textarea onChange={onPostChange} ref={newPostElement} value={newPostText} />
         </div>
         <div>
-          <button onClick={() => addPost()}>Add a post</button>
+          <button onClick={onAddPost}>Add a post</button>
         </div>
       </div>
       { postElements}
