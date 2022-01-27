@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 import s from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
+import { changeMessageActionCreator, addMessageActionCreator } from '../../redux/reducers/dialogsReducer';
 
 const Dialogs = (props) => {
     const { dialogs, messages, newMessage, dispatch } = props;
@@ -13,15 +14,15 @@ const Dialogs = (props) => {
 
     const messageElements = messages.map((m) => <Message message={m.message} owner={m.owner} />);
 
-    const newMessageElement = React.createRef();
+    // const newMessage = props.dialogsPage.newMessage;
 
-    const onMessageChange = () => {
-        const text = newMessageElement.current.value;
-        dispatch({type:"CHANGE-MESSAGE", newMessage: text});
+    const onMessageChange = (e) => {
+        const text = e.target.value;
+        dispatch(changeMessageActionCreator(text));
     };
 
     const onMessageAdd = () => {
-        dispatch({type: "ADD-MESSAGE"});
+        dispatch(addMessageActionCreator());
     };
 
     return (
@@ -32,7 +33,6 @@ const Dialogs = (props) => {
             <div className={s.messages}>
                 {messageElements}
                 <textarea onChange={onMessageChange}
-                    ref={newMessageElement}
                     value={newMessage}></textarea>
                 <button onClick={onMessageAdd}>Add Message</button>
             </div>

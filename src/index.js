@@ -8,11 +8,11 @@ import App from './App';
 const rerenderEntrieTree = (state) => {
 
     ReactDOM.render(
-        <React.StrictMode>
+        // <React.StrictMode>
             <App state={state}
                 dispatch={store.dispatch.bind(store)}
-                />
-        </React.StrictMode>,
+                />,
+        // </React.StrictMode>,
         document.getElementById('root')
     );
 };
