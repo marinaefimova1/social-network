@@ -6,6 +6,7 @@ import {
 
 import './App.css';
 import Dialogs from './components/Dialogs/Dialogs';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Friends from './components/Friends/Friends';
 import Header from './components/Header/Header';
 import Music from './components/Music/Music';
@@ -15,7 +16,7 @@ import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
 
 const App = (props) => {
-  const { state, dispatch } = props;
+  const { state, store } = props;
   return (
     <BrowserRouter>
       <div className="app-wrapper">
@@ -24,12 +25,9 @@ const App = (props) => {
         <div className="app-wrapper-content">
           <Routes>
             <Route path="/dialogs/*" element={
-              <Dialogs messages={state.dialogsPage.messages}
-                dialogs={state.dialogsPage.dialogs}
-                newMessage={state.dialogsPage.newMessage}
-                dispatch={dispatch}/>} />
+              <DialogsContainer store={store} />} />
             <Route path="/profile" element={
-              <Profile store={props.store}/>} />
+              <Profile store={store}/>} />
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
             <Route path="/settings" element={<Settings />} />
