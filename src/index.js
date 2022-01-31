@@ -4,16 +4,14 @@ import reportWebVitals from './reportWebVitals';
 import store from './redux/redux-store';
 import './index.css';
 import App from './App';
+import { Provider } from './StoreContext';
 
 const rerenderEntrieTree = (state) => {
 
     ReactDOM.render(
-        // <React.StrictMode>
-            <App state={state}
-                dispatch={store.dispatch.bind(store)}
-                store={store}
-                />,
-        // </React.StrictMode>,
+        <Provider store={store}>
+            <App state={state} />
+        </Provider>,
         document.getElementById('root')
     );
 };
