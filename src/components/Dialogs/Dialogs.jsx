@@ -7,9 +7,9 @@ import Message from './Message/Message';
 const Dialogs = (props) => {
     const { dialogs, messages, newMessage, addMessage, changeMessage } = props;
 
-    const dialogElements = dialogs.map((d) => <DialogItem name={d.name} id={d.id} />);
+    const dialogElements = dialogs.map((d) => <DialogItem name={d.name} key={d.id} id={d.id} />);
 
-    const messageElements = messages.map((m) => <Message message={m.message} owner={m.owner} />);
+    const messageElements = messages.map((m) => <Message message={m.message} key={m.id} owner={m.owner} />);
 
     const onMessageChange = (e) => {
         const text = e.target.value;
