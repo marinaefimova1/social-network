@@ -5,7 +5,7 @@ const Post = (props) => {
   const { message, likeCount } = props;
   return (
     <div className={`${s.item} ${s.active}`}>
-      <img src="ava.jpeg" />
+      <img src="ava.jpeg" alt=""/>
       { message }
       <div> like = { likeCount } </div>
     </div>

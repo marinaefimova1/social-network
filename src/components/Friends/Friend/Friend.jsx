@@ -7,7 +7,7 @@ const Friend = (props) => {
 
     return (
         <div className={s.friend}>
-            <img src={ava} />
+            <img src={ava} alt=""/>
             <NavLink to={`/friends/${id}`}>
                 {name}
             </NavLink >

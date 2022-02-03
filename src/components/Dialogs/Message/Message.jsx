@@ -13,7 +13,7 @@ const Message = (props) => {
     return (
         <div>
             <div className={messageClass}>
-                <img src="ava.jpeg"/>
+                <img src="ava.jpeg" alt=""/>
                 <div>{message}</div>
             </div>         
         </div>

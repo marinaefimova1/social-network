@@ -1,8 +1,8 @@
 const initialState = {
     friends: [
-        { id: "1", name: "Marina", ava: "ava.jpeg" },
-        { id: "2", name: "Slava", ava: "ava.jpeg" },
-        { id: "3", name: "Syapick", ava: "ava.jpeg" }
+        { id: "11", name: "Marina", ava: "ava.jpeg" },
+        { id: "21", name: "Slava", ava: "ava.jpeg" },
+        { id: "31", name: "Syapick", ava: "ava.jpeg" }
     ]
 };
 

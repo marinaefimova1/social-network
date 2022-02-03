@@ -5,7 +5,7 @@ const ProfileInfo = () => {
   return (
     <div className={s.profileInfo}>
       <div className={s.wrapper}>
-        <img src='https://www.fjordtravel.no/wp-content/uploads/2013/09/Cruise-on-Sognefjord-by-Robin-Strand-Visit-Bergen.jpg'/>
+        <img alt="" src='https://www.fjordtravel.no/wp-content/uploads/2013/09/Cruise-on-Sognefjord-by-Robin-Strand-Visit-Bergen.jpg'/>
       </div>
       <div className={s.descriptionBlock}>
         ava+ description

@@ -5,7 +5,6 @@ import {
 } from 'react-router-dom';
 
 import './App.css';
-import Dialogs from './components/Dialogs/Dialogs';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Friends from './components/Friends/Friends';
 import Header from './components/Header/Header';
@@ -14,6 +13,7 @@ import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
 import Profile from './components/Profile/Profile';
 import Settings from './components/Settings/Settings';
+import UsersContainer from './components/Users/UsersContainer';
 
 const App = (props) => {
   const {state} = props;
@@ -26,11 +26,17 @@ const App = (props) => {
           <Routes>
             <Route path="/dialogs/*" element={
               <DialogsContainer />} />
+
             <Route path="/profile" element={
               <Profile />} />
             <Route path="/news" element={<News />} />
+
             <Route path="/music" element={<Music />} />
+
             <Route path="/settings" element={<Settings />} />
+
+            <Route path="/users" element={<UsersContainer />} />
+            
             <Route path="/friends" element={<Friends friends={state.sideBar.friends} />} />
           </Routes>
         </div>
