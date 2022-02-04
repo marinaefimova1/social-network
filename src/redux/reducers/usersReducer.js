@@ -4,14 +4,14 @@ const SET_USERS = "SET_USERS";
 
 const initialState = {
     users: [
-        { id: "1", followed: true, avaUrl: 'ava.jpeg',
-         status: "", location: {city: "Omsk", country: "Russia"}, fullName: "Marina" },
-        { id: "2", followed: true, avaUrl: 'ava.jpeg',
-         status: "", location: {city: "Moscow", country: "Russia"}, fullName: "Slava" },
-        { id: "3", followed: false, avaUrl: 'ava.jpeg',
-         status: "", location: {city: "Rome", country: "Italy"}, fullName: "Syapick" },
-        { id: "4", followed: true, avaUrl: 'ava.jpeg',
-         status: "", location: {city: "Omsk", country: "Russia"}, fullName: "Danil" }
+        // { id: "1", followed: true, avaUrl: 'ava.jpeg',
+        //  status: "", location: {city: "Omsk", country: "Russia"}, fullName: "Marina" },
+        // { id: "2", followed: true, avaUrl: 'ava.jpeg',
+        //  status: "", location: {city: "Moscow", country: "Russia"}, fullName: "Slava" },
+        // { id: "3", followed: false, avaUrl: 'ava.jpeg',
+        //  status: "", location: {city: "Rome", country: "Italy"}, fullName: "Syapick" },
+        // { id: "4", followed: true, avaUrl: 'ava.jpeg',
+        //  status: "", location: {city: "Omsk", country: "Russia"}, fullName: "Danil" }
     ]
 };
 

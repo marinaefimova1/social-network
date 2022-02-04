@@ -1,53 +1,57 @@
-import React from 'react';
-// import Friend from './Friend/Friend';
+import React, { Component } from 'react';
 import s from './Users.module.css';
+import * as axios from "axios";
 
-const Users = (props) => {
-  const { users, follow, unFollow } = props;
+class Users extends Component {
 
-  // const onFollow = (userId)=> {
-  //   follow(userId)
-  // };
+  constructor(props) {
+    super(props);
+    if (this.props.users.length === 0) {
+      axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+        this.props.setUsers(response.data.items);
 
-  // const onUnFollow = (userId)=> {
-  //   unFollow(userId)
-  // };
+      })
+    }
+  }
 
-  return (
-    <div className={s.users}>
-      {
-        users.map(u => {
-          return (
-            <div key={u.id}>
-              <div>
+  render() {
+    const { users, unFollow, follow } = this.props;
+    return (
+      <div className={s.users}>
+        {
+          users.map(u => {
+            return (
+              <div key={u.id}>
                 <div>
-                  <img src={u.avaUrl} alt=""/>
-                </div>
-                <div className="div">
-                  { u.followed 
-                  ? <button onClick={() => {unFollow(u.id)}}>UNFOLLOW</button> 
-                  : <button onClick={() => {follow(u.id)}}>FOLLOW</button>
-                  }
-                  
-                </div>
-              </div>
+                  <div>
+                    <img src={u.photos.small ? u.photos.small : "ava.jpeg"} alt="" />
+                  </div>
+                  <div className="div">
+                    {u.followed
+                      ? <button onClick={() => { unFollow(u.id) }}>UNFOLLOW</button>
+                      : <button onClick={() => { follow(u.id) }}>FOLLOW</button>
+                    }
 
-              <div>
-                <div className="div">
-                  <div className="div">{u.fullName}</div>
-                  <div className="div">{u.status}</div>
+                  </div>
                 </div>
-                <div className="div">
-                  <div className="div">{u.location.country}</div>
-                  <div className="div">{u.location.city}</div>
+
+                <div>
+                  <div className="div">
+                    <div className="div">{u.name}</div>
+                    <div className="div">{u.status}</div>
+                  </div>
+                  <div className="div">
+                    <div className="div"></div>
+                    <div className="div"></div>
+                  </div>
                 </div>
               </div>
-            </div>
-          )
-        })
-      }
-    </div>
-  )
+            )
+          })
+        }
+      </div>
+    )
+  }
 }
 
 export default Users;
