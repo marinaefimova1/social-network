@@ -2,18 +2,20 @@ import { connect } from 'react-redux';
 import { Component } from 'react';
 import { follow, setUsers, unFollow, setCurrentPage, setUsersTotalCount, toggleIsFetching } from '../../redux/reducers/usersReducer';
 import Users from './Users';
-import * as axios from "axios";
 import Preloader from '../common/Preloader/Preloader';
+import { usersAPI } from '../../api/api';
 
 class UsersAPIContainer extends Component {
 
   componentDidMount() {
     // if (this.props.users.length === 0) {
     this.props.toggleIsFetching(true);
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+
+    usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
+    .then(response => {
       this.props.toggleIsFetching(false);
-      this.props.setUsers(response.data.items);
-      this.props.setUsersTotalCount(response.data.totalCount);
+      this.props.setUsers(response.items);
+      this.props.setUsersTotalCount(response.totalCount);
 
     })
     // }
@@ -22,11 +24,12 @@ class UsersAPIContainer extends Component {
   onChangePage = (pageNumber) => {
     this.props.setCurrentPage(pageNumber);
     this.props.toggleIsFetching(true);
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
-      this.props.toggleIsFetching(false);
-      this.props.setUsers(response.data.items);
+    usersAPI.getUsers(pageNumber, this.props.pageSize)
+    .then(response => {
+        this.props.toggleIsFetching(false);
+        this.props.setUsers(response.items);
 
-    })
+      })
   };
 
 
@@ -36,7 +39,7 @@ class UsersAPIContainer extends Component {
 
     return (
       <div>
-        { isFetching ? <Preloader /> : null }
+        { isFetching ? <Preloader /> : null}
         <Users users={users}
           unFollow={unFollow}
           follow={follow}
@@ -61,7 +64,7 @@ const mapStateToProps = (state) => {
   }
 };
 
-const UsersContainer = connect(mapStateToProps, 
+const UsersContainer = connect(mapStateToProps,
   {
     follow,
     unFollow,
