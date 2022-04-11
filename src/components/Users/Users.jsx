@@ -37,27 +37,11 @@ const Users = (props) => {
                 <div className="div">
                   {u.followed
                     ? <button disabled={followInProgress.includes(u.id)} onClick={() => {
-                      toggleFollowInProgress(true, u.id);
-
-                      usersAPI.unFollow(u.id)
-                        .then(response => {
-                          if (response.resultCode === 0) {
-                            unFollow(u.id)
-                          }
-                          toggleFollowInProgress(false, u.id);
-                        })
+                      unFollow(u.id)
                     }}>UNFOLLOW</button>
 
                     : <button disabled={followInProgress.some(id => id === u.id)} onClick={() => {
-                      toggleFollowInProgress(true, u.id);
-
-                      usersAPI.follow(u.id)
-                        .then(response => {
-                          if (response.resultCode === 0) {
-                            follow(u.id)
-                          }
-                          toggleFollowInProgress(false, u.id);
-                        })
+                      follow(u.id)
                     }}>FOLLOW</button>
                   }
 
