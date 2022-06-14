@@ -9,6 +9,7 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Friends from './components/Friends/Friends';
 import Header from './components/Header/Header';
 import HeaderContainer from './components/Header/HeaderContainer';
+import LoginPage from './components/Login/Login';
 import Music from './components/Music/Music';
 import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
@@ -38,6 +39,7 @@ const App = (props) => {
             <Route path="/settings" element={<Settings />} />
 
             <Route path="/users" element={<UsersContainer />} />
+            <Route path="/login" element={<LoginPage />} />
 
             <Route path="/friends" element={<Friends friends={state.sideBar.friends} />} />
           </Routes>
