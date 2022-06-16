@@ -27,6 +27,8 @@ const mapStateToProps = (state) => ({
     profile: state.profilePage.profile
 });
 
+
+
 function withRouter(Child) {
     return (props) => {
         const params = useParams();
@@ -34,7 +36,7 @@ function withRouter(Child) {
     }
 }
 
-const AuthRedirectComponent = withAuthRedirect(ProfileContainer);
+let AuthRedirectComponent = withAuthRedirect(ProfileContainer);
 
 const WithUrlDataComponentContainer = withRouter(AuthRedirectComponent);
 
