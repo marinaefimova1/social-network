@@ -66,5 +66,4 @@ export default compose(
       getUsers: getUsersThunkCreator
     }),
     withAuthRedirect
-)(UsersAPIContainer)
-// export default UsersContainer;
+)(UsersAPIContainer);

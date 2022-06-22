@@ -5,9 +5,9 @@ import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {
 
-  const { profile } = props;
+  // const { profile, status, updateStatus } = props;
 
-  if (!profile) {
+  if (!props.profile) {
     return <Preloader />
   }
   return (
@@ -20,16 +20,16 @@ const ProfileInfo = (props) => {
 
       <div className={s.descriptionBlock}>
         
-        <img alt="profile" src={profile.photos.small} />
+        <img alt="profile" src={props.profile.photos.small} />
         
-        <ProfileStatus status="test"/>
+        <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
 
-        <div><b><span>{profile.fullName}</span></b></div>
+        <div><b><span>{props.profile.fullName}</span></b></div>
         
-        <div>{profile.aboutMe}</div>
+        <div>{props.profile.aboutMe}</div>
         <div>
           <div><b>Ищу работу:</b></div>
-          <div>{profile.lookingForAJobDescription}</div>
+          <div>{props.profile.lookingForAJobDescription}</div>
         </div>
       </div>
     </div>
