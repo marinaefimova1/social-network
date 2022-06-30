@@ -10,7 +10,6 @@ class ProfileStatus extends Component {
   }
 
   activateEditMode = () => {
-    console.log("this", this)
     this.setState({
       editMode: true
     })
@@ -28,6 +27,15 @@ class ProfileStatus extends Component {
       status: e.currentTarget.value
     })
   }
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if(prevProps.status !== this.props.status){
+      this.setState({
+        status: this.props.status
+      })
+    };
+    console.log("ComponentDidUpdate");
+  };
 
   render() {
     return (

@@ -1,13 +1,17 @@
 import { authAPI, usersAPI } from "../../api/api";
 
 const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA";
+const LOGIN_ON_SERVICE = "LOGIN_ON_SERVICE";
 
 
 const initialState = {
     userId: null,
     email: null,
     login: null,
-    isAuth: false
+    isAuth: false,
+    rememberMe: false,
+    password: "",
+    captcha: false
 };
 
 const authReducer = (state = initialState, action) => {
@@ -18,7 +22,12 @@ const authReducer = (state = initialState, action) => {
                 ...action.data,
                 isAuth: true
             };
-
+        case LOGIN_ON_SERVICE:
+            return {
+                ...state,
+                userId: action.userId,
+                isAuth: true
+            }
         default:
             return state;
     }
@@ -27,6 +36,8 @@ const authReducer = (state = initialState, action) => {
 export default authReducer;
 
 export const setAuthUserData = (userId, email, login) => ({ type: SET_AUTH_USER_DATA, data: { userId, email, login } });
+export const loginOnService = (userId) => ({ type: LOGIN_ON_SERVICE, userId });
+
 
 export const authMe = () => {
     return (dispatch) => {
@@ -35,6 +46,21 @@ export const authMe = () => {
             if (response.resultCode === 0) {
                 let { id, login, email } = response.data;
                 dispatch(setAuthUserData(id, email, login));
+            }
+        })
+    }
+};
+
+export const login = (email, password) => {
+    return (dispatch) => {
+        authAPI.login(email, password)
+        .then(response => {
+            if (response.resultCode === 0) {
+                console.log(response)
+                let { id } = response.data;
+                dispatch(loginOnService(id));
+            } else {
+                console.error(response.messages);
             }
         })
     }

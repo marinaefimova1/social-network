@@ -1,9 +1,85 @@
 import React from "react";
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
+import TextInput from "../FormItems/TextInput/TextInput";
+import Select from "../FormItems/Select/Select";
+import Checkbox from "../FormItems/Checkbox/Checkbox";
+import ValidationSchema from "./ValidationSchema";
+import { login } from "../../redux/reducers/authReducer";
+import { connect } from "react-redux";
 
-const Login = () => {
+const LoginContainer = (props) => {
+    // debugger;
+    const onSubmit = (formData) => {
+        console.log("formData",formData);
+        props.login(formData.email, formData.password);
+    }
+
     return (
-        <div>Login</div>
+        <div>
+            <h1>Login</h1>
+            <LoginForm onSubmit={onSubmit} />
+        </div>
     )
 };
 
-export default Login;
+const LoginForm = (props) => {
+   
+    return (
+        <>
+            <Formik
+                initialValues={{
+                    login: "",
+                    password: "",
+                    email: "",
+                    rememberMe: false,
+                    jobType: ""
+                }}
+                validationSchema={ValidationSchema}
+
+                onSubmit={props.onSubmit}
+            >
+                <Form>
+                    <TextInput
+                        label="login"
+                        name="login"
+                        type="text"
+                        placeholder="login"
+                    />
+                    <TextInput
+                        label="password"
+                        name="password"
+                        type="text"
+                        placeholder="password"
+                    />
+                    <TextInput
+                        label="Email Address"
+                        name="email"
+                        type="email"
+                        placeholder="marina@formik.com"
+                    />
+                    <Select label="Job Type" name="jobType">
+                        <option value="">Select a job type</option>
+                        <option value="designer">Designer</option>
+                        <option value="development">Developer</option>
+                        <option value="product">Product Manager</option>
+                        <option value="other">Other</option>
+                    </Select>
+                    <Checkbox name="rememberMe">
+                        Remember Me
+                    </Checkbox>
+
+                    <button type="submit">Submit</button>
+                </Form>
+            </Formik>
+        </>
+    );
+};
+
+const mapStateToProps = (state) => ({
+    isAuth: state.auth.isAuth,
+    // login: state.auth.login,
+    userId: state.auth.userId
+});
+
+export default connect(mapStateToProps, { login: login })(LoginContainer);
