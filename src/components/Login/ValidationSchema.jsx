@@ -12,12 +12,6 @@ const ValidationSchema =
                 .email("Invalid email addresss`")
                 .required("Required"),
             rememberMe: Yup.boolean(),
-            jobType: Yup.string()
-                .oneOf(
-                    ["designer", "development", "product", "other"],
-                    "Invalid Job Type"
-                )
-                .required("Required")
         })
 
 export default ValidationSchema;

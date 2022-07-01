@@ -12,7 +12,7 @@ const LoginContainer = (props) => {
     // debugger;
     const onSubmit = (formData) => {
         console.log("formData",formData);
-        props.login(formData.email, formData.password);
+        props.login(formData.login, formData.password);
     }
 
     return (
@@ -32,8 +32,7 @@ const LoginForm = (props) => {
                     login: "",
                     password: "",
                     email: "",
-                    rememberMe: false,
-                    jobType: ""
+                    rememberMe: false
                 }}
                 validationSchema={ValidationSchema}
 
@@ -58,13 +57,6 @@ const LoginForm = (props) => {
                         type="email"
                         placeholder="marina@formik.com"
                     />
-                    <Select label="Job Type" name="jobType">
-                        <option value="">Select a job type</option>
-                        <option value="designer">Designer</option>
-                        <option value="development">Developer</option>
-                        <option value="product">Product Manager</option>
-                        <option value="other">Other</option>
-                    </Select>
                     <Checkbox name="rememberMe">
                         Remember Me
                     </Checkbox>

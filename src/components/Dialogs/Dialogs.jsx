@@ -4,21 +4,18 @@ import s from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import { Navigate } from 'react-router-dom';
+import { Form, Formik } from 'formik';
+import TextArea from '../FormItems/TextArea/TextArea';
 
 const Dialogs = (props) => {
-    const { dialogs, messages, newMessage, addMessage, changeMessage, isAuth } = props;
+    const { dialogs, messages, isAuth } = props;
 
     const dialogElements = dialogs.map((d) => <DialogItem name={d.name} key={d.id} id={d.id} />);
 
     const messageElements = messages.map((m) => <Message message={m.message} key={m.id} owner={m.owner} />);
 
-    const onMessageChange = (e) => {
-        const text = e.target.value;
-        changeMessage(text);
-    };
-
-    const onMessageAdd = () => {
-        addMessage();
+    const onMessageAdd = (message) => {
+        props.addMessage(message.message);
     };
 
     if (!isAuth) {
@@ -31,12 +28,37 @@ const Dialogs = (props) => {
             </div>
             <div className={s.messages}>
                 {messageElements}
-                <textarea onChange={onMessageChange}
-                    value={newMessage}></textarea>
-                <button onClick={onMessageAdd}>Add Message</button>
+
+                <MessageForm  onSubmit={onMessageAdd}/>
+
             </div>
         </div>
     )
 };
 
 export default Dialogs;
+
+const MessageForm = (props) => {
+   console.log(props)
+    return (
+        <>
+            <Formik
+                initialValues={{
+                    message: ""
+                }}
+                
+
+                onSubmit={props.onSubmit}
+            >
+                <Form>
+                    <TextArea
+                        name="message"
+                        type="text"
+                        placeholder="message"
+                    />
+                    <button type="submit">Add Message</button>
+                </Form>
+            </Formik>
+        </>
+    );
+};
