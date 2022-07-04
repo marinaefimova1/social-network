@@ -6,6 +6,7 @@ import Message from './Message/Message';
 import { Navigate } from 'react-router-dom';
 import { Form, Formik } from 'formik';
 import TextArea from '../FormItems/TextArea/TextArea';
+import * as Yup from "yup";
 
 const Dialogs = (props) => {
     const { dialogs, messages, isAuth } = props;
@@ -47,6 +48,13 @@ const MessageForm = (props) => {
                     message: ""
                 }}
                 
+                validationSchema={
+                    Yup.object({
+                        message: Yup.string()
+                            .max(10, `Must be 10 characters or less`)
+                            .required("Required")
+                    })
+                }
 
                 onSubmit={props.onSubmit}
             >

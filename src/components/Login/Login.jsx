@@ -9,9 +9,7 @@ import { login } from "../../redux/reducers/authReducer";
 import { connect } from "react-redux";
 
 const LoginContainer = (props) => {
-    // debugger;
     const onSubmit = (formData) => {
-        console.log("formData",formData);
         props.login(formData.login, formData.password);
     }
 

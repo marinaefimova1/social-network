@@ -3,14 +3,16 @@ import s from './TextArea.module.css';
 
 const TextArea = ({ label, ...props }) => {
     const [field, meta] = useField(props);
+    const hasError = meta.touched && meta.error;
+
     return (
-        <>
-            <label htmlFor={props.id || props.name}>{label}</label>
+        <div className={s.formControl + " " + (hasError ? s.error : "")}>
+            {/* <label htmlFor={props.id || props.name}>{label}</label> */}
             <textarea className="textarea" {...field} {...props} />
-            {meta.touched && meta.error ? (
-                <div className="error">{meta.error}</div>
-            ) : null}
-        </>
+            { hasError && (
+                <div className={s.error}>{meta.error}</div>
+            ) }
+        </div>
     );
 };
 
