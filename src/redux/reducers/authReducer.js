@@ -1,4 +1,4 @@
-import { authAPI, usersAPI } from "../../api/api";
+import { authAPI } from "../../api/api";
 
 const SET_AUTH_USER_DATA = "SET_AUTH_USER_DATA";
 const LOGIN_ON_SERVICE = "LOGIN_ON_SERVICE";
@@ -8,10 +8,7 @@ const initialState = {
     userId: null,
     email: null,
     login: null,
-    isAuth: false,
-    rememberMe: false,
-    password: "",
-    captcha: false
+    isAuth: false
 };
 
 const authReducer = (state = initialState, action) => {
@@ -19,8 +16,7 @@ const authReducer = (state = initialState, action) => {
         case SET_AUTH_USER_DATA:
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.payload
             };
         case LOGIN_ON_SERVICE:
             return {
@@ -35,7 +31,8 @@ const authReducer = (state = initialState, action) => {
 
 export default authReducer;
 
-export const setAuthUserData = (userId, email, login) => ({ type: SET_AUTH_USER_DATA, data: { userId, email, login } });
+export const setAuthUserData = (userId, email, login, isAuth) => ({ type: SET_AUTH_USER_DATA,
+     payload: { userId, email, login, isAuth } });
 export const loginOnService = (userId) => ({ type: LOGIN_ON_SERVICE, userId });
 
 
@@ -45,20 +42,38 @@ export const authMe = () => {
         .then(response => {
             if (response.resultCode === 0) {
                 let { id, login, email } = response.data;
-                dispatch(setAuthUserData(id, email, login));
+                dispatch(setAuthUserData(id, email, login, true));
             }
         })
     }
 };
 
-export const login = (email, password) => {
-    return (dispatch) => {
-        authAPI.login(email, password)
+export const login = (email, password, rememberMe, setStatus) => {
+
+    return (dispatch) => 
+    {
+        authAPI.login(email, password, rememberMe)
         .then(response => {
             if (response.resultCode === 0) {
-                console.log(response)
-                let { id } = response.data;
-                dispatch(loginOnService(id));
+                console.log(response);
+                // let { id } = response.data;
+                // dispatch(loginOnService(id));
+                let { id, login, email } = response.data;
+                dispatch(authMe(id, email, login, true));
+            } else {
+                setStatus(response.messages[0]);
+                console.error(response.messages[0]);
+            }
+        })
+    }
+};
+
+export const logout = () => {
+    return (dispatch) => {
+        authAPI.logout()
+        .then(response => {
+            if (response.resultCode === 0) {
+                dispatch(setAuthUserData(null, null, null, false));
             } else {
                 console.error(response.messages);
             }

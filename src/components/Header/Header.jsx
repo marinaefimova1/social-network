@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { logout } from '../../redux/reducers/authReducer';
 import s from './Header.module.css';
 
 const Header = (props) => {
@@ -9,7 +10,9 @@ const Header = (props) => {
       <img src='./logo192.png' alt="" />
       <div className={s.loginBlock}>
         {
-          props.isAuth ? props.login : <NavLink to="/login">
+          props.isAuth 
+          ? <div>{props.login} <button onClick={props.logout}>Log Out</button></div>
+          : <NavLink to="/login">
             Login here!
         </NavLink>
         }
