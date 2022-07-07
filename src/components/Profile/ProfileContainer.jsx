@@ -12,8 +12,7 @@ class ProfileContainer extends Component {
         if (!userId) {
             userId = this.props.userId;
             if (!userId) {
-                // debugger;
-                
+                // debugger;                
                 this.props.navigate("/login");
             }
         };

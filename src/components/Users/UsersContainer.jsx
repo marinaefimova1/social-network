@@ -8,16 +8,20 @@ import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
 import { compose } from 'redux';
 import withAuthRedirect from '../../hoc/withAuthRedirect';
+import {
+  getUsers, getPageSize, getTotalUsersCount,
+  getCurrentPage, getIsFetching, getFollowInProgress
+} from '../../redux/selectors/users-selectors';
 
 class UsersAPIContainer extends Component {
 
   componentDidMount() {
-    this.props.getUsers(this.props.currentPage, this.props.pageSize);
+    this.props.requestUsers(this.props.currentPage, this.props.pageSize);
   };
 
   onChangePage = (pageNumber) => {
-    this.props.setCurrentPage(pageNumber);
-    this.props.getUsers(pageNumber, this.props.pageSize);
+    // this.props.setCurrentPage(pageNumber);
+    this.props.requestUsers(pageNumber, this.props.pageSize);
   };
 
 
@@ -37,7 +41,7 @@ class UsersAPIContainer extends Component {
           currentPage={currentPage}
           onChangePage={this.onChangePage}
           followInProgress={followInProgress}
-          />
+        />
       </div>
     )
   }
@@ -46,12 +50,12 @@ class UsersAPIContainer extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    followInProgress: state.usersPage.followInProgress
+    users: getUsers(state),
+    pageSize: getPageSize(state),
+    totalUsersCount: getTotalUsersCount(state),
+    currentPage: getCurrentPage(state),
+    isFetching: getIsFetching(state),
+    followInProgress: getFollowInProgress(state)
   }
 };
 
@@ -63,7 +67,7 @@ export default compose(
       setUsers,
       setCurrentPage,
       toggleIsFetching,
-      getUsers: getUsersThunkCreator
+      requestUsers: getUsersThunkCreator
     }),
-    withAuthRedirect
+  withAuthRedirect
 )(UsersAPIContainer);
