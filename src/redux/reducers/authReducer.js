@@ -38,7 +38,7 @@ export const loginOnService = (userId) => ({ type: LOGIN_ON_SERVICE, userId });
 
 export const authMe = () => {
     return (dispatch) => {
-        authAPI.me()
+        return authAPI.me()
         .then(response => {
             if (response.resultCode === 0) {
                 let { id, login, email } = response.data;
