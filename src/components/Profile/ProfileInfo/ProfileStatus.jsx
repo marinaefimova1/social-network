@@ -1,6 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
-import { updateStatus } from '../../../redux/reducers/profileReducer';
+// import { updateStatus } from '../../../redux/reducers/profileReducer';
 
 class ProfileStatus extends Component {
 
