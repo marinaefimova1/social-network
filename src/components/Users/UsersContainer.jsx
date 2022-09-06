@@ -16,12 +16,14 @@ import {
 class UsersAPIContainer extends Component {
 
   componentDidMount() {
-    this.props.requestUsers(this.props.currentPage, this.props.pageSize);
+    const { currentPage, pageSize } = this.props;
+    this.props.requestUsers(currentPage, pageSize);
   };
 
   onChangePage = (pageNumber) => {
     // this.props.setCurrentPage(pageNumber);
-    this.props.requestUsers(pageNumber, this.props.pageSize);
+    const { pageSize } = this.props;
+    this.props.requestUsers(pageNumber, pageSize);
   };
 
 

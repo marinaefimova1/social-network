@@ -1,7 +1,7 @@
 import { authAPI } from "../../api/api";
 import { authMe } from "./authReducer";
 
-const INITIALIZE_SUCCESS = "INITIALIZE_SUCCESS";
+const INITIALIZE_SUCCESS = "soc-network/app/INITIALIZE_SUCCESS";
 
 
 const initialState = {

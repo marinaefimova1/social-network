@@ -1,4 +1,4 @@
-const ADD_MESSAGE = "ADD-MESSAGE";
+const ADD_MESSAGE = "soc-network/dialogs/ADD-MESSAGE";
 
 const initialState = {
     dialogs: [

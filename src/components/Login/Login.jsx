@@ -1,6 +1,5 @@
 import React from "react";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
 import TextInput from "../FormItems/TextInput/TextInput";
 import Checkbox from "../FormItems/Checkbox/Checkbox";
 import ValidationSchema from "./ValidationSchema";
@@ -26,6 +25,15 @@ const LoginContainer = (props) => {
     )
 };
 
+const createTextInput = (label, name, type, placeholder) => {
+    return <TextInput
+        label={label}
+        name={name}
+        type={type}
+        placeholder={placeholder}
+    />
+};
+
 const LoginForm = (props) => {
 
     return (
@@ -43,27 +51,13 @@ const LoginForm = (props) => {
 
                 {({ status }) => (
                     <Form>
-                        <TextInput
-                            label="login"
-                            name="login"
-                            type="text"
-                            placeholder="login"
-                        />
-                        <TextInput
-                            label="password"
-                            name="password"
-                            type="password"
-                            placeholder="password"
-                        />
-                        <TextInput
-                            label="Email Address"
-                            name="email"
-                            type="email"
-                            placeholder="marina@formik.com"
-                        />
+                       { createTextInput("login", "login", "text", "login") }
+                       { createTextInput("password", "password", "password", "password") }
+                       { createTextInput("Email Address", "email", "email", "marina@formik.com") }
+
                         <Checkbox name="rememberMe">
                             Remember Me
-                    </Checkbox>
+                        </Checkbox>
 
                         <div className={s.formSummaryError}>
                             {status}
