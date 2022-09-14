@@ -1,4 +1,5 @@
 // module.exports = {
+//     // transform: {}
 //     moduleFileExtensions: [
 //       'js',
 //       'jsx',
@@ -8,9 +9,9 @@
 //       '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
 //       '^.+\\.js$': 'babel-jest'
 //     },
-//     moduleNameMapper: {
-//       '^@/(.*)$': '<rootDir>/src/$1'
-//     },
+//     // moduleNameMapper: {
+//     //   '^@/(.*)$': '<rootDir>/src/$1'
+//     // },
   
-//     transformIgnorePatterns: ['<rootDir>/node_modules/']
+//     // transformIgnorePatterns: ['<rootDir>/node_modules/']
 //   }
