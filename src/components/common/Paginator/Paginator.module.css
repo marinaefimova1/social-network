@@ -1,7 +1,15 @@
 .selectedPage {
     font-weight: bold;
+    border-color: black;
 }
 
 .page {
     cursor: pointer;
+    padding: 2px;
+    border: 1px solid grey;
+}
+
+.page.selectedPage {
+    font-weight: bold;
+    border-color: black;
 }

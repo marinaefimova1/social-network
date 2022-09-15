@@ -21,7 +21,7 @@ const initialState = {
         // { id: "4", followed: true, avaUrl: 'ava.jpeg',
         //  status: "", location: {city: "Omsk", country: "Russia"}, fullName: "Danil" }
     ],
-    pageSize: 5,
+    pageSize: 10,
     totalUsersCount: 21,
     currentPage: 2,
     isFetching: true,
