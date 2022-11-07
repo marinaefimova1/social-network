@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/marinaefimova1/social-network/static/css/main.d21245b9.chunk.css",
+    "main.js": "/marinaefimova1/social-network/static/js/main.2dd959b4.chunk.js",
+    "main.js.map": "/marinaefimova1/social-network/static/js/main.2dd959b4.chunk.js.map",
+    "runtime-main.js": "/marinaefimova1/social-network/static/js/runtime-main.548e3c55.js",
+    "runtime-main.js.map": "/marinaefimova1/social-network/static/js/runtime-main.548e3c55.js.map",
+    "static/js/2.5733d514.chunk.js": "/marinaefimova1/social-network/static/js/2.5733d514.chunk.js",
+    "static/js/2.5733d514.chunk.js.map": "/marinaefimova1/social-network/static/js/2.5733d514.chunk.js.map",
+    "static/css/3.b01c6ed7.chunk.css": "/marinaefimova1/social-network/static/css/3.b01c6ed7.chunk.css",
+    "static/js/3.2110005f.chunk.js": "/marinaefimova1/social-network/static/js/3.2110005f.chunk.js",
+    "static/js/3.2110005f.chunk.js.map": "/marinaefimova1/social-network/static/js/3.2110005f.chunk.js.map",
+    "static/js/4.f7949d03.chunk.js": "/marinaefimova1/social-network/static/js/4.f7949d03.chunk.js",
+    "static/js/4.f7949d03.chunk.js.map": "/marinaefimova1/social-network/static/js/4.f7949d03.chunk.js.map",
+    "index.html": "/marinaefimova1/social-network/index.html",
+    "static/css/3.b01c6ed7.chunk.css.map": "/marinaefimova1/social-network/static/css/3.b01c6ed7.chunk.css.map",
+    "static/css/main.d21245b9.chunk.css.map": "/marinaefimova1/social-network/static/css/main.d21245b9.chunk.css.map",
+    "static/js/2.5733d514.chunk.js.LICENSE.txt": "/marinaefimova1/social-network/static/js/2.5733d514.chunk.js.LICENSE.txt",
+    "static/media/preloader.2469d523.gif": "/marinaefimova1/social-network/static/media/preloader.2469d523.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.548e3c55.js",
+    "static/js/2.5733d514.chunk.js",
+    "static/css/main.d21245b9.chunk.css",
+    "static/js/main.2dd959b4.chunk.js"
+  ]
+}
