@@ -1,6 +1,7 @@
 {
   "name": "soc-network",
   "version": "0.1.0",
+  "homepage": "https://github.com/marinaefimova1/social-network",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.0",
@@ -20,6 +21,8 @@
     "yup": "^0.32.11"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest",
@@ -47,6 +50,7 @@
     "@babel/preset-env": "^7.19.0",
     "@babel/preset-react": "^7.18.6",
     "classnames": "^2.3.2",
+    "gh-pages": "^4.0.0",
     "react-test-renderer": "^17.0.2"
   }
 }

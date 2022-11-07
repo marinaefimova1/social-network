@@ -2,10 +2,11 @@ import React from 'react';
 import {
   Routes, Route, useParams
 } from 'react-router-dom';
-import { Component } from 'react';
+import { Component, Suspense } from 'react';
 
 import './App.css';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
+// import DialogsContainer from './components/Dialogs/DialogsContainer';
+
 import Friends from './components/Friends/Friends';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginPage from './components/Login/Login';
@@ -19,6 +20,9 @@ import { connect } from 'react-redux';
 import { initializeApp } from './redux/reducers/appReducer';
 import { compose } from 'redux';
 import Preloader from './components/common/Preloader/Preloader';
+import withSuspense from './hoc/withSuspense';
+
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
 
 class App extends Component {
   componentDidMount() {
@@ -34,24 +38,27 @@ class App extends Component {
         <HeaderContainer />
         <Navbar friends={this.props.friends} />
         <div className="app-wrapper-content">
-          <Routes>
-            <Route path="/dialogs/*" element={
-              <DialogsContainer />} />
+          <Suspense fallback={<div>Loading...</div>}>
 
-            <Route path="/profile/" element={<ProfileContainer />} >
-              <Route path=":userId" element={<ProfileContainer />} />
-            </Route>
-            <Route path="/news" element={<News />} />
+            <Routes>
+              <Route path="/dialogs/*" element={<DialogsContainer />} />
 
-            <Route path="/music" element={<Music />} />
+              <Route path="/profile/" element={<ProfileContainer />} >
+                <Route path=":userId" element={<ProfileContainer />} />
+              </Route>
+              <Route path="/news" element={<News />} />
 
-            <Route path="/settings" element={<Settings />} />
+              <Route path="/music" element={<Music />} />
 
-            <Route path="/users" element={<UsersContainer />} />
-            <Route path="/login" element={<LoginPage />} />
+              <Route path="/settings" element={<Settings />} />
 
-            <Route path="/friends" element={<Friends friends={this.props.friends} />} />
-          </Routes>
+              <Route path="/users" element={<UsersContainer />} />
+              <Route path="/login" element={<LoginPage />} />
+
+              <Route path="/friends" element={<Friends friends={this.props.friends} />} />
+            </Routes>
+          </Suspense>
+
         </div>
       </div>
     )
